@@ -44,9 +44,7 @@ function displayTemperature(response) {
 
 function search(city) {
   let apiKey = "69adc672f883a4104109164db0e52025";
-  let city = "Ottawa";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}}&appid=${apiKey}`;
-  console.log(apiUrl);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -55,7 +53,6 @@ function actionSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-search("Ottawa");
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", actionSubmit);
