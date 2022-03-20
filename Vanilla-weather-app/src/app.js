@@ -42,7 +42,20 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "2988cc0b462e792256914a6d30c3d866";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=ottawa&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "69adc672f883a4104109164db0e52025";
+  let city = "Ottawa";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}}&appid=${apiKey}`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayTemperature);
+}
 
-axios.get(apiUrl).then(displayTemperature);
+function actionSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+search("Ottawa");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", actionSubmit);
